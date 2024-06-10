@@ -1,0 +1,18 @@
+{{ define "admin/public/success.html" }}
+{{ template "admin/public/page_header.html" .}}
+
+<meta http-equiv="refresh" content="3;url={{.redirectURL}}">
+<title>操作成功</title>
+
+<div class="container-fluid">
+    <div class="container" style="width: 480px;margin-top:100px;">
+        <div class="alert alert-success">
+            <h2>操作成功!</h2>
+            <h3>{{.message}}</h3>
+            <br />
+            <p>如果您不做出选择，将在 3秒后跳转到上一个链接地址</p>
+            <br />
+        </div>
+    </div>
+</div>
+{{ end }}
