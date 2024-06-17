@@ -1,13 +1,9 @@
 package admin
 
 import (
-	"encoding/json"
-	"fmt"
 	"net/http"
-	"xiaomi_store/models"
 	"xiaomi_store/mysql/xiaomi"
 
-	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,22 +13,16 @@ type AdminController struct {
 
 func (m AdminController) Index(c *gin.Context) {
 	// 权限判断
-	// 判断用户是否登录
-	sessions := sessions.Default(c)
-	user := sessions.Get(models.ManagerSessionName)
-	userString, ok := user.(string)
+	user, ok := c.Get("user")
 	if !ok {
-		fmt.Println("session 转换失败")
-		m.Fail(c, "请先登录", "/admin/login")
+		m.Fail(c, "用户不存在", "/admin/login")
 		return
 	}
-	var userInfo xiaomi.Manager
-	err := json.Unmarshal([]byte(userString), &userInfo)
-	if err != nil {
-		fmt.Println("sessionJson 转换失败", err, userString)
-		m.Fail(c, "请先登录", "/admin/login")
+	userInfo, ok := user.(xiaomi.Manager)
+	if !ok {
+		m.Fail(c, "用户未找到", "/admin/login")
 		return
-	} 
+	}
 	c.HTML(http.StatusOK, "admin/main/index.html", gin.H{
 		"userName": userInfo.Username,
 	})
