@@ -4,6 +4,23 @@ import (
 	"time"
 )
 
+/*
+CREATE TABLE `manager` (
+  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `username` varchar(255) DEFAULT NULL COMMENT '用户名',
+  `password` varchar(32) NOT NULL COMMENT '密码',
+  `mobile` varchar(11) DEFAULT NULL COMMENT '手机号',
+  `email` varchar(255) DEFAULT NULL COMMENT '电子邮件',
+  `status` tinyint(1) DEFAULT '1' COMMENT '状态，1表示启用，0表示禁用',
+  `role_id` int DEFAULT NULL COMMENT '角色ID',
+  `add_time` int DEFAULT NULL COMMENT '添加时间，UNIX时间戳格式',
+  `is_super` tinyint(1) DEFAULT '0' COMMENT '是否超级管理员，1表示是，0表示否',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`) COMMENT '主键索引'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='管理员表'
+*/
+
 // Manager 定义对应于数据库表的结构体
 type Manager struct {
 	ID        int64     `gorm:"primaryKey;autoIncrement;comment:主键ID" json:"id"`                                                     // 主键ID

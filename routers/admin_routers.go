@@ -21,6 +21,13 @@ func AdminRouters(c *gin.Engine) {
 	admin.GET("/manager", controller_admin.ManagerController{}.Index)
 	admin.GET("/manager/add", controller_admin.ManagerController{}.Add)
 
+	admin.GET("/role", controller_admin.RoleController{}.Index)
+	admin.GET("/role/add", controller_admin.RoleController{}.Add)
+	admin.POST("/role/doAdd", controller_admin.RoleController{}.DoAdd)
+	admin.GET("/role/edit", controller_admin.RoleController{}.Edit)
+	admin.POST("/role/doEdit", controller_admin.RoleController{}.DoEdit)
+	admin.GET("/role/delete", controller_admin.RoleController{}.Delete)
+
 	admin.GET("/goods", controller_admin.GoodsController{}.Index)
 	admin.GET("/goods/add", controller_admin.GoodsController{}.Add)
 
