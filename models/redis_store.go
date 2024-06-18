@@ -13,7 +13,7 @@ type RedisStore struct {
 
 func (r RedisStore) Set(id string, value string) error {
 	key := CAPTCHA + id
-	return redis.RedisDB.Set(context.Background(), key, value, time.Second*120).Err()
+	return redis.RedisDB.Set(context.Background(), key, value, time.Minute*60*2).Err()
 }
 
 func (r RedisStore) Get(id string, clear bool) string {

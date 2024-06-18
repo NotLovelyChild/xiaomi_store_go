@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"xiaomi_store/models"
 	"xiaomi_store/mysql/xiaomi"
+	"xiaomi_store/utils"
 
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
@@ -39,7 +40,7 @@ func (l LoginController) LoginPost(c *gin.Context) {
 	verifyValue := c.PostForm("verifyValue")
 	manager := &xiaomi.Manager{
 		Username: c.PostForm("username"),
-		Password: models.MD5(c.PostForm("password")),
+		Password: utils.MD5(c.PostForm("password")),
 	}
 	if models.VerifyCaptcha(captchaId, verifyValue) {
 		// 验证码正确

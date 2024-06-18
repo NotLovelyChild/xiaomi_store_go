@@ -1,5 +1,35 @@
 {{ define "admin/manager/index.html"}}
 {{ template "admin/public/page_header.html" . }}
-<p>管理员列表</p>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr class="th">
+                <th>管理员名称</th>
+                <th>管理员电话</th>
+                <th>管理员邮箱</th>
+                <th>管理员角色</th>
+                <th>管理员状态</th>
+                <th>创建时间</th>
+                <th class="text-center">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{ range $key,$value := .managers}}
+                <tr>
+                    <td>{{ $value.Username}}</td>
+                    <td>{{ $value.Mobile}}</td>
+                    <td>{{ $value.Email}}</td>
+                    <td>{{ $value.Role.Title}}</td>
+                    <td>{{ $value.Status }}</td>
+                    <td>{{ $value.CreatedAt}}</td>
+                    <td class="text-center">
+                        <a href="/admin/manager/edit?id={{ $value.ID}}" class="btn btn-primary btn-sm">编辑</a>
+                        <a href="/admin/manager/delete?id={{ $value.ID}}" class="btn btn-danger btn-sm">删除</a>
+                    </td>
+                </tr>
+            {{ end }}
+        </tbody>
+    </table>
+</div>
 
 {{ end }}

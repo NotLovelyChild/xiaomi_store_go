@@ -56,7 +56,7 @@ func (r RoleController) Edit(c *gin.Context) {
 		return
 	}
 	role := &xiaomi.Role{
-		Id: idInt,
+		ID: idInt,
 	}
 	err = role.FindByID()
 	if err != nil {
@@ -82,7 +82,7 @@ func (r RoleController) DoEdit(c *gin.Context) {
 		return
 	}
 	role := &xiaomi.Role{
-		Id: idInt,
+		ID: idInt,
 	}
 	err = role.FindByID()
 	if err != nil {
@@ -107,7 +107,7 @@ func (r RoleController) Delete(c *gin.Context) {
 		return
 	}
 	role := &xiaomi.Role{
-		Id: idInt,
+		ID: idInt,
 	}
 	err = role.FindByID()
 	if err != nil {

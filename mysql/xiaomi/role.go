@@ -15,15 +15,15 @@ CREATE TABLE `role` (
 */
 
 type Role struct {
-	Id          int64     `gorm:"id" json:"id"`
-	Title       string    `gorm:"title" json:"title"`
-	Description string    `gorm:"description" json:"description"`
-	Status      bool      `gorm:"status" json:"status"`
-	CreatedAt   time.Time `gorm:"created_at" json:"created_at"`
-	UpdatedAt   time.Time `gorm:"updated_at" json:"updated_at"`
+	ID          int64     `gorm:"column:id;primaryKey;autoIncrement" json:"id"` // 主键ID
+	Title       string    `gorm:"column:title" json:"title"`                    // 角色名称
+	Description string    `gorm:"column:description" json:"description"`        // 角色描述
+	Status      bool      `gorm:"column:status" json:"status"`                  // 状态，1表示启用，0表示禁用
+	CreatedAt   time.Time `gorm:"column:created_at" json:"created_at"`          // 创建时间
+	UpdatedAt   time.Time `gorm:"column:updated_at" json:"updated_at"`          // 更新时间
 }
 
-func (Role) TableName() string {
+func (r *Role) TableName() string {
 	return "role"
 }
 
@@ -40,7 +40,7 @@ func (r *Role) Delete() error {
 }
 
 func (r *Role) FindByID() error {
-    return DB.First(r, r.Id).Error
+	return DB.First(r, r.ID).Error
 }
 
 func FindALLRoles() ([]Role, error) {
@@ -48,5 +48,3 @@ func FindALLRoles() ([]Role, error) {
 	err := DB.Find(&roles).Error
 	return roles, err
 }
-
-

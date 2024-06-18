@@ -3,6 +3,7 @@ package main
 import (
 	"xiaomi_store/config"
 	"xiaomi_store/routers"
+	"xiaomi_store/utils"
 
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/redis"
@@ -11,6 +12,8 @@ import (
 
 func main() {
 	r := gin.Default()
+	// 设置模板
+	r.SetFuncMap(utils.TFunc)
 	// 加载模板
 	r.LoadHTMLGlob("templates/**/**/*")
 	//配置静态web目录   第一个参数表示路由, 第二个参数表示映射的目录

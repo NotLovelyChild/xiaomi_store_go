@@ -40,15 +40,15 @@ func AdminAuth(c *gin.Context) {
 
 func gotoLogin(c *gin.Context) {
 	path := c.Request.URL.Path
-	fmt.Println("-----------", path)
 	for _, v := range filtrationPath {
 		if path == v {
 			return
 		}
 	}
-	c.HTML(http.StatusOK, "admin/public/fail.html", gin.H{
+	c.HTML(http.StatusFound, "admin/public/fail.html", gin.H{
 		"message":     "请先登录",
 		"redirectURL": "/admin/login",
 	})
+	// c.Redirect(http.StatusFound, "/admin/login")
 	c.Abort()
 }
